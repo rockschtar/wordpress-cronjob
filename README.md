@@ -33,11 +33,3 @@ Cronjob::init();
 # Question? Issues?
 
 rockschtar/wordpress-cronjob is hosted on GitLab. Feel free to open issues there for suggestions, questions and real issues.
-
-
-# Who's Behind
-
-I'm Giuseppe, I deal with PHP since 2005. For questions, rants or chat ping me on Twitter ([@gmazzap](https://twitter.com/gmazzap)) 
-or on ["The Loop"](https://chat.stackexchange.com/rooms/6/the-loop) (Stack Exchange) chat.
-
-Well, it's possible I'll ignore rants.
