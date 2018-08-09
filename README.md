@@ -1,12 +1,5 @@
 # rockschtar/cronjob
 
-Brain Monkey is a tests utility for PHP.
-
-It provides **two set of helpers**:
-
-  - the first are framework-agnostic tools that allow to mock (or *monkey patch*) and to test behavior of any **PHP function**
-  - the second are **specific to WordPress** and make unit testing of WordPress extensions a no-brainer.
-
 # Requirements
 
   - PHP 7.1+
