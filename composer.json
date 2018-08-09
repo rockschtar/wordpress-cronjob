@@ -1,6 +1,6 @@
 {
   "name": "rockschtar/wordpress-cronjob",
-  "license": "",
+  "license": "MIT",
   "description": "Library for simple wordpress cronjob creation",
   "require": {
   },
