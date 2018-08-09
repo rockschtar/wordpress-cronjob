@@ -3,7 +3,6 @@
   "license": "",
   "description": "Library for simple wordpress cronjob creation",
   "require": {
-      "rockschtar/wordpress-datetime" : "0.*"
   },
   "require-dev": {
     "brain/monkey": "2.*",
