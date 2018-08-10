@@ -71,15 +71,13 @@ class CronjobConfig {
         return $this;
     }
 
-    /**
-     * @return string
-     */
+
     public function getRecurrence(): string {
         return $this->recurrence;
     }
 
     /**
-     * @param string $recurrence
+     * @param string("hourly", "twicedaily", "daily") $recurrence How often the event should recur.
      * @return CronjobConfig
      */
     public function setRecurrence(string $recurrence): CronjobConfig {

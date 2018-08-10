@@ -11,12 +11,27 @@ rockschtar/wordpress-cronjob is open source and released under MIT license. See 
 
 # Usage
 
-Cronjob Class
+Create a cronjob class
 
-Register Cronjob
+    class TestCronjob extends AbstractCronjob {
 
-Cronjob::init();
+        public function execute(): void {
+            //do some stuff
+        }
 
+        public function config(): CronjobConfig {
+            $config = new CronjobConfig();
+            $config->setHook('do_test_cronjob');
+            $config->setPluginFile('some_plugin.php');
+            $config->setFirstRun(new \DateTime());
+            $config->setRecurrence('daily');
+            return $config;
+        }
+    }
+
+Initialize the class
+
+    TestCronjob::init();
 
 
 # Question? Issues?
