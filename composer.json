@@ -3,6 +3,7 @@
   "license": "MIT",
   "description": "Library for simple wordpress cronjob creation",
   "require": {
+    "php": ">=7.1"
   },
   "require-dev": {
     "brain/monkey": "2.*",
