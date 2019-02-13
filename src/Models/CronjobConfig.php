@@ -86,7 +86,7 @@ class CronjobConfig {
     }
 
     /**
-     * @return \DateTime|null
+     * @return \DateTime
      */
     public function getFirstRun(): \DateTime {
         return $this->first_run;
