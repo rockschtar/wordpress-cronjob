@@ -44,6 +44,11 @@ abstract class AbstractCronjob {
         wp_clear_scheduled_hook($this->config()->getHook());
     }
 
+    final public function reschedule(): void {
+        $this->unschedule_cronjob();
+        $this->schedule_cronjob();
+    }
+
     abstract public function execute(): void;
 
     abstract public function config(): CronjobConfig;
