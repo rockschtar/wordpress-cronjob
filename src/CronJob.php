@@ -7,7 +7,7 @@ namespace Rockschtar\WordPress\Cronjob;
 
 use Rockschtar\WordPress\Cronjob\Models\CronjobConfig;
 
-abstract class AbstractCronjob {
+abstract class CronJob {
     /**
      * @var
      */

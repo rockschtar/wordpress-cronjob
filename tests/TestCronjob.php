@@ -5,10 +5,10 @@
 
 namespace Rockschtar\WordPress\Cronjob\Tests;
 
-use Rockschtar\WordPress\Cronjob\AbstractCronjob;
+use Rockschtar\WordPress\Cronjob\CronJob;
 use Rockschtar\WordPress\Cronjob\Models\CronjobConfig;
 
-class TestCronjob extends AbstractCronjob {
+class TestCronjob extends CronJob {
 
     public function execute(): void {
         //do some stuff
