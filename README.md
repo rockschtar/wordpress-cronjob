@@ -1,5 +1,9 @@
 # rockschtar/cronjob
 
+# Description
+
+Library for use with roots/bedrock based WordPress projects. Simplifys the creation of WordPress cronjobs.
+
 # Requirements
 
   - PHP 7.1+
@@ -7,7 +11,7 @@
 
 # License
 
-rockschtar/wordpress-cronjob is open source and released under MIT license. See LICENSE file for more info.
+rockschtar/wordpress-cronjob is open source and released under MIT license. See LICENSE.md file for more info.
 
 # Usage
 

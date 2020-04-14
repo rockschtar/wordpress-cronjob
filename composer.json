@@ -1,7 +1,7 @@
 {
   "name": "rockschtar/wordpress-cronjob",
   "license": "MIT",
-  "description": "Library for simple wordpress cronjob creation",
+  "description": "Library for use with roots/bedrock based WordPress projects. Simplifys the creation of WordPress cronjobs.",
   "require": {
     "php": ">=7.1"
   },
