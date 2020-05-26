@@ -12,7 +12,7 @@ abstract class SingleJob {
 
     private function __construct() {
         add_action($this->hookname(), [&$this, 'handle'], 10, 2);
-    }
+        add_action($this->config()->getHook(), array(&$this, 'execute'));    }
 
     abstract protected function hookname(): string;
 
@@ -41,16 +41,18 @@ abstract class SingleJob {
 
     abstract public function handle(...$args): void;
 
-    final public function dispatch(array $args = [], int $secondsFromNow = 180): void {
-        $this->_dispatch($args, time() + $secondsFromNow);
+    final public function schedule(array $args = [], int $secondsFromNow = 180): void {
+        $this->_schedule($args, time() + $secondsFromNow);
     }
 
-    private function _dispatch(array $args, int $timestamp): void {
+    private function _schedule(array $args, int $timestamp): void {
         wp_schedule_single_event($timestamp, $this->hookname(), $args);
     }
 
-    final public function dispatchAtTime(array $args, int $timestamp): void {
-        $this->_dispatch($args, $timestamp);
+    final public function scheduleAtTime(array $args, int $timestamp): void {
+        $this->_schedule($args, $timestamp);
     }
+
+    abstract public function execute(): void;
 
 }
