@@ -1,103 +1,64 @@
 <?php
-/**
- * @author: StefanHelmer
- */
 
 namespace Rockschtar\WordPress\Cronjob\Models;
 
-use Rockschtar\WordPress\DateTimeUtils\DateTimeUtils;
+use DateInterval;
+use DateTime;
 
 class CronjobConfig {
 
-    /**
-     * @var string
-     */
-    private $plugin_file;
+    private ?string $pluginFile = null;
 
-    /**
-     * @var string
-     */
-    private $hook;
+    private string $hook = '';
 
-    /**
-     * @var string
-     */
-    private $recurrence = 'daily';
+    private string $recurrence = 'daily';
 
-    /**
-     * @var \DateTime
-     */
-    private $first_run;
+    private DateTime $firstRun;
 
     public function __construct() {
 
-        $first_run = new \DateTime();
-        /** @noinspection PhpUnhandledExceptionInspection */
-        $first_run->add(new \DateInterval('P1D'));
-        $first_run->setTime(0, 0, 0);
-
-        $this->first_run = $first_run;
+        $first_run = new DateTime();
+        $first_run->add(new DateInterval('P1D'));
+        $first_run->setTime(0, 0);
+        $this->firstRun = $first_run;
     }
 
-    /**
-     * @return string
-     */
     public function getPluginFile(): string {
-        return $this->plugin_file;
+        return $this->pluginFile;
     }
 
-    /**
-     * @param string $plugin_file
-     * @return CronjobConfig
-     */
-    public function setPluginFile(string $plugin_file): CronjobConfig {
-        $this->plugin_file = $plugin_file;
+    public function setPluginFile(string $pluginFile): CronjobConfig {
+        $this->pluginFile = $pluginFile;
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getHook(): string {
         return $this->hook;
     }
 
-    /**
-     * @param string $hook
-     * @return CronjobConfig
-     */
     public function setHook(string $hook): CronjobConfig {
         $this->hook = sanitize_key($hook);
         return $this;
     }
-
 
     public function getRecurrence(): string {
         return $this->recurrence;
     }
 
     /**
-     * @param string("hourly", "twicedaily", "daily") $recurrence How often the event should recur.
-     * @return CronjobConfig
+     * @param string $recurrence ("hourly", "twicedaily", "daily") $recurrence How often the event should recur.
      */
     public function setRecurrence(string $recurrence): CronjobConfig {
         $this->recurrence = $recurrence;
         return $this;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getFirstRun(): \DateTime {
-        return $this->first_run;
+    public function getFirstRun(): DateTime {
+        return $this->firstRun;
     }
 
-    /**
-     * @param \DateTime|null $first_run
-     * @return CronjobConfig
-     */
-    public function setFirstRun(\DateTime $first_run): CronjobConfig {
-        $this->first_run = $first_run;
+    public function setFirstRun(DateTime $firstRun): CronjobConfig {
+        $this->firstRun = $firstRun;
         return $this;
     }
 }

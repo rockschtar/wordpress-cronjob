@@ -1,53 +1,42 @@
 <?php
-/**
- * @author: StefanHelmer
- */
 
 namespace Rockschtar\WordPress\Cronjob;
 
 use Rockschtar\WordPress\Cronjob\Models\CronjobConfig;
 
 abstract class CronJob {
-    /**
-     * @var
-     */
-    private static $_instances;
 
-    /**
-     * AbstractCronJob constructor.
-     */
+    private static ?array $_instances = null;
+
     final public function __construct() {
         $config = $this->config();
-        register_activation_hook($config->getPluginFile(), array(&$this, 'schedule_cronjob'));
-        register_deactivation_hook($config->getPluginFile(), array(&$this, 'unschedule_cronjob'));
-        add_action($this->config()->getHook(), array(&$this, 'execute'));
-        add_action('admin_action_' . $this->config()->getHook(), array(&$this, 'execute'));
+        register_activation_hook($config->getPluginFile(), $this->schedule(...));
+        register_deactivation_hook($config->getPluginFile(), $this->clearSchedule(...));
+        add_action($this->config()->getHook(), $this->execute(...));
+        add_action($this->config()->getHook() . '_clear_schedule', $this->clearSchedule(...));
+        add_action('admin_action_' . $this->config()->getHook(), $this->execute(...));
     }
 
-    /**
-     * @return static
-     */
-    final public static function &init() {
-        /** @noinspection ClassConstantCanBeUsedInspection */
-        $class = \get_called_class();
+    final public static function &init() : static {
+        $class = static::class;
         if(!isset(self::$_instances[$class])) {
             self::$_instances[$class] = new $class();
         }
         return self::$_instances[$class];
     }
 
-    final public function schedule_cronjob(): void {
+    final public function schedule(): void {
         wp_schedule_event($this->config()->getFirstRun()->getTimestamp(), $this->config()->getRecurrence(), $this->config()->getHook());
     }
 
-    final public function unschedule_cronjob(): void {
+    final public function clearSchedule(): void {
         wp_clear_scheduled_hook($this->config()->getHook());
     }
 
     final public static function reschedule(): void {
         $instance = self::init();
-        $instance->unschedule_cronjob();
-        $instance->schedule_cronjob();
+        $instance->clearSchedule();
+        $instance->schedule();
     }
 
     abstract public function execute(): void;

@@ -3,11 +3,12 @@
   "license": "MIT",
   "description": "Library for use with roots/bedrock based WordPress projects. Simplifys the creation of WordPress cronjobs.",
   "require": {
-    "php": ">=7.1"
+    "php": ">=8.1"
   },
   "require-dev": {
-    "brain/monkey": "2.*",
-    "phpunit/phpunit": "^7"
+    "brain/monkey": "2.6.1.",
+    "phpunit/phpunit": "^10",
+    "rector/rector": "^0.18.4"
   },
   "autoload": {
     "psr-4": {

@@ -5,20 +5,17 @@ namespace Rockschtar\WordPress\Cronjob;
 
 abstract class SingleJob {
 
-    /**
-     * @var
-     */
-    private static $_instances;
+    private static ?array $_instances = null;
 
     private function __construct() {
-        add_action($this->hookname(), [&$this, 'handle'], 10, 2);
-        add_action($this->config()->getHook(), array(&$this, 'execute'));    }
+        add_action($this->hookname(), $this->handle(...), 10, 2);
+        add_action($this->hookname(), $this->execute(...));
+    }
 
     abstract protected function hookname(): string;
 
     final public static function register(): void {
-        /** @noinspection ClassConstantCanBeUsedInspection */
-        $class = \get_called_class();
+        $class = static::class;
         if (!isset(self::$_instances[$class])) {
             self::$_instances[$class] = new $class();
         }
@@ -30,8 +27,7 @@ abstract class SingleJob {
      * @return SingleJob
      */
     final public static function event(): self {
-        /** @noinspection ClassConstantCanBeUsedInspection */
-        $class = \get_called_class();
+        $class = static::class;
         if (!isset(self::$_instances[$class])) {
             throw new \RuntimeException('Event is not registered');
         }

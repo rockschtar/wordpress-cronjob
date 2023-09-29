@@ -1,7 +1,4 @@
 <?php
-/**
- * @author: StefanHelmer
- */
 
 namespace Rockschtar\WordPress\Cronjob\Tests;
 
